@@ -227,11 +227,11 @@ defmodule Stompex do
   end
 
   @doc false
-  def handle_call({ :send, destination, message }, %{ conn: conn } = state) do
+  def handle_call({ :send, destination, message }, _, %{ conn: conn } = state) do
     frame =
       send_frame()
       |> put_header("destination", destination)
-      |> put_header("content-length", byte_size(message))
+      |> put_header("content-length", "#{byte_size(message)}")
       |> set_body(message)
       |> finish_frame()
 
