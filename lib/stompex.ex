@@ -248,7 +248,7 @@ defmodule Stompex do
       |> set_body(message)
       |> finish_frame()
 
-    response = Con.send_frame(conn, frame)
+    response = Con.send_frame(sock, frame)
     { :reply, response, state }
   end
 
